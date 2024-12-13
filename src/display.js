@@ -1,6 +1,10 @@
 import { getItems } from "./assets/api";
 
-const taskForm = document.querySelector(".task-form");
+const taskItem = document.querySelector(".task-item");
+const taskTitle = document.querySelector(".task-title");
+const taskDescription = document.querySelector(".task-desc");
+const taskAssignee = document.querySelector(".task-meta strong");
+// const taskStatus = document.querySelector(".task-status");
 
 // eslint-disable-next-line no-unused-vars
 const getProducts = (async () => {
@@ -17,31 +21,15 @@ const getProducts = (async () => {
 
 //Отображение на дисплее. resp = tasks
 const renderTasks = (tasks) => {
-  //Полученный ответ перебираю через map
-  const taskElements = tasks.map(
-    (task) =>
-      `
-      <section class="task-display">
-      <h2>Task List</h2>
-      <ul id="task-list">
-        <li class="task-item" data-id=${task.id}>
-          <div class="task-info">
-            <h3 class="task-title">${task.title}</h3>
-            <p class="task-desc">${task.description}</p>
-            <p class="task-meta">
-              <span>Assigned to: <strong>${task.assignedTo}</strong></span>
-            </p>
-          </div>
-          <div class="task-actions">
-            <button class="edit-task">Edit</button>
-            <button class="delete-task">Delete</button>
-          </div>
-        </li>
-      </ul>
-    </section>
-    `,
-  );
-  taskForm.insertAdjacentHTML("afterend", taskElements); // Вставляем разметку
+  if (Array.isArray(tasks) && tasks.length > 0) {
+    tasks.map((task) => {
+      taskItem.dataset.id = task.id;
+      taskTitle.textContent = task.title;
+      taskDescription.textContent = task.description;
+      taskAssignee.textContent = task.assignedTo;
+      // taskStatus.textContent = task.status
+    });
+  }
 };
 
 renderTasks();
