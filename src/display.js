@@ -16,7 +16,7 @@ const getListItem = (async () => {
 })();
 
 //Отображение на дисплее. resp = tasks
-const renderTasks = (tasks) => {
+export const renderTasks = (tasks) => {
   if (Array.isArray(tasks) && tasks.length > 0) {
     const taskElements = tasks.map(
       (task) =>
@@ -42,4 +42,7 @@ const renderTasks = (tasks) => {
   }
 };
 
-renderTasks();
+
+export const clearTasks = () => {
+  ul.innerHTML = '';
+}
