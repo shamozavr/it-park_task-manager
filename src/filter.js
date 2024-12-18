@@ -28,7 +28,7 @@ select.addEventListener('change', async(event) => {
 
 
 const renderTasksByUserId = async(user_id, tasks) => {
-    const filteredTasks = tasks.map((task) => {
+    const filteredTasks = tasks.filter((task) => {
         if (task.assignedTo == user_id) {
             return task
         }
