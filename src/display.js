@@ -3,17 +3,17 @@ import { getItems } from "./assets/api";
 const ul = document.querySelector('#task-list')
 
 // eslint-disable-next-line no-unused-vars
-const getListItem = (async () => {
-  //Получаем по url наш массив tasks
-  const resp = await getItems("/api/tasks");
+export const getListItems = async (url, callback) => {
+  //Получаем по url наш массив данных
+  const resp = await getItems(url);
 
   // Проверяем, является ли результат массивом
   if (Array.isArray(resp) && resp.length > 0) {
-    renderTasks(resp); // Передаем данные для рендеринга
+    callback(resp); // Передаем данные для рендеринга
   } else {
     alert("Ответ не является массивом:", resp); // Если ошибка, выводим сообщение
   }
-})();
+};
 
 //Отображение на дисплее. resp = tasks
 const renderTasks = (tasks) => {
@@ -42,4 +42,4 @@ const renderTasks = (tasks) => {
   }
 };
 
-renderTasks();
+getListItems("/api/tasks", renderTasks)
