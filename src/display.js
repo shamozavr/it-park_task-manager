@@ -47,4 +47,3 @@ export const clearTasks = () => {
   ul.innerHTML = '';
 }
 
-getListItems("/api/tasks", renderTasks)
