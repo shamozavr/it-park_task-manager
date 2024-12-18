@@ -16,7 +16,7 @@ export const getListItems = async (url, callback) => {
 };
 
 //Отображение на дисплее. resp = tasks
-const renderTasks = (tasks) => {
+export const renderTasks = (tasks) => {
   if (Array.isArray(tasks) && tasks.length > 0) {
     const taskElements = tasks.map(
       (task) =>
@@ -41,5 +41,10 @@ const renderTasks = (tasks) => {
     return null
   }
 };
+
+
+export const clearTasks = () => {
+  ul.innerHTML = '';
+}
 
 getListItems("/api/tasks", renderTasks)

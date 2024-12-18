@@ -1,3 +1,4 @@
+
 export const getItems = async url => {
 	try {
 		const resp = await fetch(url)
@@ -10,3 +11,4 @@ export const getItems = async url => {
 		return error.message // Возвращаем сообщение об ошибке
 	}
 }
+
