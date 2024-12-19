@@ -3,7 +3,7 @@ import { getItems } from "./assets/api";
 const ul = document.querySelector('#task-list')
 
 // eslint-disable-next-line no-unused-vars
-export const getListItems = async (url, callback) => {
+export const getArrItem = async (url, callback) => {
   //Получаем по url наш массив данных
   const resp = await getItems(url);
 

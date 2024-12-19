@@ -1,10 +1,12 @@
-import { getListItems, renderTasks } from "./display.js";
+import { getArrItem, renderTasks } from "./display.js";
 import { filter } from "./filter.js";
 
-const initTasks = (tasks) => {
-  renderTasks(tasks)
-  filter(tasks)
-}
+const initTasks = (() => {
+  getArrItem("/api/tasks", (tasks)=>{
+    renderTasks(tasks)
+    filter(tasks)
+  })
+})()
 
 const initUsers = (users) => {
 
@@ -26,5 +28,4 @@ const initUsers = (users) => {
   renderUsers("edit-task-assignee")
 }
 
-getListItems("/api/tasks", initTasks)
-getListItems("/api/users", initUsers)
+getArrItem("/api/users", initUsers)
