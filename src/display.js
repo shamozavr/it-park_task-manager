@@ -46,3 +46,16 @@ export const renderTasks = (tasks) => {
 export const clearTasks = () => {
   ul.innerHTML = '';
 }
+
+
+//----------Удаление----------
+//Создаём событие для всего ul
+ul.addEventListener('click', function(event) {
+  //Проверяем, есть ли кнопка с классом delete-task
+  if (event.target.classList.contains('delete-task')) {
+    let question = confirm("Do you realy want to delete this task?")
+    if(question){
+      ul.remove()
+    }
+  }
+});
