@@ -1,13 +1,14 @@
-import { getArrItem, renderTasks } from "./display.js";
+import { getArrItem, renderTasks, clearTasks } from "./display.js";
 import { filter } from "./filter.js";
-import { handlerAddTasks } from "./addTasks.js";
 
-const initTasks = (tasks) => {
-  renderTasks(tasks);
-  filter(tasks);
-  handlerAddTasks(tasks);
+export const initTasks = () => {
+  getArrItem("/api/tasks", (tasks) => {
+    clearTasks();
+    renderTasks(tasks);
+    filter(tasks);
+  });
 };
-
+initTasks();
 const initUsers = (users) => {
   const renderUsers = (id) => {
     const select = document.getElementById(id);
@@ -26,5 +27,4 @@ const initUsers = (users) => {
   renderUsers("edit-task-assignee");
 };
 
-getArrItem("/api/tasks", initTasks);
 getArrItem("/api/users", initUsers);
