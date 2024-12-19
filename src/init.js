@@ -1,9 +1,11 @@
 import { getArrItem, renderTasks } from "./display.js";
 import { filter } from "./filter.js";
+import { handlerAddTasks } from "./addTasks.js";
 
 const initTasks = (tasks) => {
   renderTasks(tasks);
   filter(tasks);
+  handlerAddTasks(tasks);
 };
 
 const initUsers = (users) => {

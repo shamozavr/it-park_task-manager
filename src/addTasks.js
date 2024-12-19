@@ -16,29 +16,37 @@ const isInputForm = async () => {
     return [title, description, assignedTo];
   }
 };
-
-const handlerAddTasks = (btn) => {
-  btn.addEventListener("click", async () => {
-    const [title, description, assignedTo] = await isInputForm();
-    // надо переделать, но как?)
-    let id;
-    await getArrItem("/api/tasks", (tasks) => {
-      // Функция выполняющуя вычисление длины массива с задачами
-      if (tasks.length == 0) {
-        id = 0;
-      } else {
-        id = tasks.length + 1;
+const clearForm = () => {
+  taskForm.title.value = "";
+  taskForm.description.value = "";
+};
+export const handlerAddTasks = (tasks) => {
+  document
+    .querySelector(".task-form")
+    .addEventListener("click", async (event) => {
+      event.preventDefault();
+      if (event.target.closest(".task-add-button")) {
+        const [title, description, assignedTo] = await isInputForm();
+        // надо переделать, но как?)
+        let id;
+        await getArrItem("/api/tasks", (tasks) => {
+          // Функция выполняющуя вычисление длины массива с задачами
+          if (tasks.length == 0) {
+            id = 0;
+          } else {
+            id = tasks.length + 1;
+          }
+        });
+        const newTasks = {
+          id: String(id),
+          title: title,
+          description: description,
+          assignedTo: assignedTo,
+        };
+        addItem(`/api/tasks`, newTasks);
+        clearForm();
+        clearTasks();
+        getArrItem("/api/tasks", renderTasks);
       }
     });
-    const newTasks = {
-      id: String(id),
-      title: title,
-      description: description,
-      assignedTo: assignedTo,
-    };
-    addItem(`/api/tasks`, newTasks);
-    clearTasks();
-    getArrItem("/api/tasks", renderTasks);
-  });
 };
-handlerAddTasks(document.querySelector(".task-add-button"));
