@@ -1,20 +1,20 @@
 import { getItems } from "./assets/api";
 
-const ul = document.querySelector('#task-list')
+const ul = document.querySelector("#task-list");
 
 // eslint-disable-next-line no-unused-vars
-const getListItem = (async () => {
-  //Получаем по url наш массив tasks
-  const resp = await getItems("/api/tasks");
+// Возвращает item - который может быть либо массивом юзеров, либо массивом задач
+export const getArrItem = async (url, callback) => {
+  //Получаем по url наш массив данных
+  const resp = await getItems(url);
 
   // Проверяем, является ли результат массивом
   if (Array.isArray(resp) && resp.length > 0) {
-    renderTasks(resp); // Передаем данные для рендеринга
+    callback(resp); // Передаем данные для рендеринга
   } else {
-    alert("Ответ не является массивом:", resp); // Если ошибка, выводим сообщение
+    alert("Ответ не является массивом:", resp); // Если ошибкдаа, выводим сообщение
   }
-})();
-
+};
 //Отображение на дисплее. resp = tasks
 export const renderTasks = (tasks) => {
   if (Array.isArray(tasks) && tasks.length > 0) {
@@ -36,13 +36,12 @@ export const renderTasks = (tasks) => {
           </div>
         </li>`,
     );
-    ul.insertAdjacentHTML("beforeend", taskElements.join(''));
+    ul.insertAdjacentHTML("beforeend", taskElements.join(""));
   } else {
-    return null
+    return null;
   }
 };
 
-
 export const clearTasks = () => {
-  ul.innerHTML = '';
-}
+  ul.innerHTML = "";
+};

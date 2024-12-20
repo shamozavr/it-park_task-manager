@@ -1,83 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="./src/assets/css/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task Manager</title>
-  <link rel="stylesheet" href="./src/assets/css/style.css">
-</head>
+  <body>
+    <header>
+      <h1>Task Manager</h1>
+    </header>
+    <main>
+      <section class="task-form">
+        <h2>Add New Task</h2>
+        <form id="task-form">
+          <label for="task-title">Title</label>
+          <input type="text" id="task-title" name="title" required />
+          <label for="task-desc">Description</label>
+          <textarea id="task-desc" name="description" required></textarea>
 
-<body>
-  <header>
-    <h1>Task Manager</h1>
-  </header>
-  <main>
-    <section class="task-form">
-      <h2>Add New Task</h2>
-      <form id="task-form">
-        <label for="task-title">Title</label>
-        <input type="text" id="task-title" name="title" required />
+          <label for="task-assignee">Assign To</label>
+          <select id="task-assignee" name="assignedTo" required>
+            <!-- Users will be dynamically loaded here -->
+          </select>
 
-        <label for="task-desc">Description</label>
-        <textarea id="task-desc" name="description" required></textarea>
+          <button type="submit" class="task-add-button">Add Task</button>
+        </form>
+      </section>
 
-        <label for="task-assignee">Assign To</label>
-        <select id="task-assignee" name="assignedTo" required>
-          <!-- Users will be dynamically loaded here -->
-        </select>
-
-        <button type="submit">Add Task</button>
-      </form>
-    </section>
-
-    <section class="task-list">
-      <h2>Tasks</h2>
-      <div class="filters">
-        <label for="filter-assignee">Filter by Assignee</label>
-        <select id="filter-assignee">
-          <option value="all">All</option>
-          <!-- Users will be dynamically loaded here -->
-        </select>
-
-      </div>
-      <ul id="task-list">
-        <!-- Tasks will be dynamically rendered here -->
-      </ul>
-    </section>
-  </main>
-
-
-
-  <!-- Верстка модального окна -->
-  <div id="edit-modal" class="modal hidden">
-    <div class="modal-content">
-      <h2>Edit Task</h2>
-      <form id="edit-task-form">
-        <div class="form-group">
-          <label for="edit-task-title">Task Title</label>
-          <input type="text" id="edit-task-title" name="title" required />
-        </div>
-        <div class="form-group">
-          <label for="edit-task-desc">Description</label>
-          <textarea id="edit-task-desc" name="description" rows="3" required></textarea>
-        </div>
-        <div class="form-group">
-          <label for="edit-task-assignee">Assignee</label>
-          <select id="edit-task-assignee" name="assignee" required>
+      <section class="task-list">
+        <h2>Tasks</h2>
+        <div class="filters">
+          <label for="filter-assignee">Filter by Assignee</label>
+          <select id="filter-assignee">
+            <option value="all">All</option>
             <!-- Users will be dynamically loaded here -->
           </select>
         </div>
+        <ul id="task-list">
+          <!-- Tasks will be dynamically rendered here -->
+        </ul>
+      </section>
+    </main>
 
-        <div class="modal-actions">
-          <button type="submit" class="btn save-btn">Save</button>
-          <button type="button" class="btn cancel-btn">Cancel</button>
-        </div>
-      </form>
+    <!-- Верстка модального окна -->
+    <div id="edit-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Edit Task</h2>
+        <form id="edit-task-form">
+          <div class="form-group">
+            <label for="edit-task-title">Task Title</label>
+            <input type="text" id="edit-task-title" name="title" required />
+          </div>
+          <div class="form-group">
+            <label for="edit-task-desc">Description</label>
+            <textarea
+              id="edit-task-desc"
+              name="description"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="edit-task-assignee">Assignee</label>
+            <select id="edit-task-assignee" name="assignee" required>
+              <!-- Users will be dynamically loaded here -->
+            </select>
+          </div>
+
+          <div class="modal-actions">
+            <button type="submit" class="btn save-btn">Save</button>
+            <button type="button" class="btn cancel-btn">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <script src="./main.js" type="module"></script>
-</body>
-
+    <script src="./main.js" type="module"></script>
+  </body>
 </html>
