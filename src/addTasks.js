@@ -31,6 +31,7 @@ const getIdNewTasks = (tasks) => {
 };
 let handlerAddTasks = () => {};
 export const addTasks = (tasks) => {
+  taskForm.removeEventListener("submit", handlerAddTasks);
   handlerAddTasks = async (event) => {
     event.preventDefault();
     const [title, description, assignedTo] = isInputForm();
@@ -44,6 +45,6 @@ export const addTasks = (tasks) => {
     await addItem(`/api/tasks`, newTask);
     initTasks();
   };
-  taskForm.removeEventListener("submit", handlerAddTasks);
+  // taskForm.removeEventListener("submit", handlerAddTasks);
   taskForm.addEventListener("submit", handlerAddTasks);
 };

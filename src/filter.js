@@ -3,6 +3,7 @@ import { renderTasks, clearTasks } from "./display.js";
 const select = document.querySelector("#filter-assignee");
 let handlerFilter = () => {};
 export const filter = (tasks) => {
+  select.removeEventListener("change", handlerFilter);
   handlerFilter = async (event) => {
     clearTasks();
 
@@ -16,7 +17,6 @@ export const filter = (tasks) => {
     }
   };
 
-  select.removeEventListener("change", handlerFilter);
   select.addEventListener("change", handlerFilter);
 };
 
