@@ -1,11 +1,13 @@
 import { getArrItem, renderTasks, clearTasks } from "./display.js";
 import { filter } from "./filter.js";
+import { addTasks } from "./addTasks.js";
 
 export const initTasks = () => {
   getArrItem("/api/tasks", (tasks) => {
     clearTasks();
     renderTasks(tasks);
     filter(tasks);
+    addTasks(tasks);
   });
 };
 initTasks();
