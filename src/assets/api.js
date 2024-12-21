@@ -12,3 +12,18 @@ export const getItems = async url => {
 	}
 }
 
+
+
+export const removeItem = async (url) => {
+	try{
+		const resp = await fetch(url, {
+			method: "DELETE",
+		})
+		if (!resp.ok) {
+			throw new Error("Ошибка удаления")
+		} 
+	}
+	catch (error) {
+		return error.message
+	}
+}
