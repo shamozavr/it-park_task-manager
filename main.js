@@ -4,3 +4,4 @@ import "./src/init.js";
 import "./src/display.js";
 import "./src/filter.js";
 import "./src/addTasks.js";
+import "./src/ux.js";
