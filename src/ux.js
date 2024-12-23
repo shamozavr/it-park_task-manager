@@ -1,34 +1,26 @@
 const taskList = document.querySelector("#task-list");
 const modalHidden = document.querySelector(".modal.hidden");
 const modalAction = document.querySelector(".modal-actions");
-const modal = document.querySelector(".modal");
 
-const openModal = async () => {
-  const handlerOpenModal = () => {
-    taskList.addEventListener("click", (event) => {
-      if (event.target.closest(".edit-task")) {
-        modalHidden.style.cssText = "opacity:1; pointer-events: auto";
-        closeModal();
-      }
-    });
-  };
-  handlerOpenModal();
+const handlerModal = (item, state, name, action) => {
+  item.addEventListener(state, (event) => {
+    if (state == "submit") {
+      event.preventDefault;
+    }
+    if (event.target.matches(name) && action == "close") {
+      modalHidden.style.cssText = "opacity:0; pointer-events: none";
+    } else if (event.target.matches(name) && action == "open") {
+      modalHidden.style.cssText = "opacity:1; pointer-events: auto";
+    }
+  });
 };
+
 const closeModal = () => {
-  const handlerCloseModal = async () => {
-    modalAction.addEventListener("click", (event) => {
-      if (event.target.closest(".cancel-btn")) {
-        modalHidden.style.cssText = "opacity:0; pointer-events: none";
-      }
-    });
-    modalAction.addEventListener("submit", (event) => {
-      event.preventDefault();
-      if (event.target.closest(".save-btn")) {
-        modalHidden.style.cssText = "opacity:0; pointer-events: none";
-      }
-    });
-  };
-  handlerCloseModal();
+  handlerModal(modalAction, "click", ".cancel-btn", "close");
+  handlerModal(modalAction, "submit", ".save-btn", "close");
+  handlerModal(document, "click", ".modal", "close");
 };
-
-await openModal();
+const openModal = (() => {
+  handlerModal(taskList, "click", ".edit-task", "open");
+  closeModal();
+})();
