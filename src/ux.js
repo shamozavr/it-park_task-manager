@@ -8,16 +8,20 @@ const handlerModal = (item, state, name, action) => {
       event.preventDefault;
     }
     if (event.target.matches(name) && action == "close") {
-      modalHidden.style.cssText = "opacity:0; pointer-events: none";
+      setTimeout(function () {
+        modalHidden.style.cssText = "opacity:0; pointer-events: none";
+      }, 400);
     } else if (event.target.matches(name) && action == "open") {
-      modalHidden.style.cssText = "opacity:1; pointer-events: auto";
+      setTimeout(function () {
+        modalHidden.style.cssText = "opacity:1; pointer-events: auto;";
+      }, 400);
     }
   });
 };
 
 const closeModal = () => {
   handlerModal(modalAction, "click", ".cancel-btn", "close");
-  handlerModal(modalAction, "submit", ".save-btn", "close");
+  handlerModal(modalAction, "click", ".save-btn", "close");
   handlerModal(document, "click", ".modal", "close");
 };
 const openModal = (() => {
