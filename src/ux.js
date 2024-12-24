@@ -1,11 +1,14 @@
 const taskList = document.querySelector("#task-list");
 const modalHidden = document.querySelector(".modal.hidden");
 const modalAction = document.querySelector(".modal-actions");
-
+const editForm = document.querySelector("#edit-task-form");
 const handlerModal = (item, state, name, action) => {
   item.addEventListener(state, (event) => {
     if (state == "submit") {
-      event.preventDefault;
+      event.preventDefault();
+      setTimeout(function () {
+        modalHidden.style.cssText = "opacity:0; pointer-events: none";
+      }, 400);
     }
     if (event.target.matches(name) && action == "close") {
       setTimeout(function () {
@@ -20,8 +23,8 @@ const handlerModal = (item, state, name, action) => {
 };
 
 const closeModal = () => {
-  handlerModal(modalAction, "click", ".cancel-btn", "close");
-  handlerModal(modalAction, "click", ".save-btn", "close");
+  handlerModal(editForm, "click", ".cancel-btn", "close");
+  handlerModal(editForm, "submit", ".save-btn", "close");
   handlerModal(document, "click", ".modal", "close");
 };
 const openModal = (() => {
