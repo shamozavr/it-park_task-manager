@@ -20,9 +20,15 @@ export const addItem = async (url, item) => {
       },
       body: JSON.stringify(item),
     });
+    if (!resp.ok) {
+      throw new Error("Ошибка добавления");
+    }
 
-<<<<<<< HEAD
-
+    return await resp.json();
+  } catch (error) {
+    return error.message;
+  }
+};
 
 export const removeItem = async (url) => {
 	try{
@@ -37,14 +43,4 @@ export const removeItem = async (url) => {
 		return error.message
 	}
 }
-=======
-    if (!resp.ok) {
-      throw new Error("Ошибка добавления");
-    }
 
-    return await resp.json();
-  } catch (error) {
-    return error.message;
-  }
-};
->>>>>>> master
