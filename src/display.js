@@ -70,7 +70,7 @@ ul.addEventListener('click', async function(event) {
       await removeItem(`/api/tasks/${id}`)
 
       // Удаляем из интерфейса
-      event.target.closest('.task-item').remove()
+      initTasks()
     }
   }
 });
