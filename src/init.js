@@ -1,6 +1,7 @@
 import { getArrItem, renderTasks, clearTasks } from "./display.js";
 import { filter } from "./filter.js";
 import { addTasks } from "./addTasks.js";
+import { getDateModal } from "./editTask.js";
 
 export const initTasks = () => {
   getArrItem("/api/tasks", (tasks) => {
@@ -8,6 +9,7 @@ export const initTasks = () => {
     renderTasks(tasks);
     filter(tasks);
     addTasks(tasks);
+    getDateModal(tasks)
   });
 };
 initTasks();

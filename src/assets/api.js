@@ -30,3 +30,23 @@ export const addItem = async (url, item) => {
     return error.message;
   }
 };
+
+export const updateItem = async (url, patch) => {
+  try {
+    const resp = await fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(patch),
+    });
+
+    if (!resp.ok) {
+      throw new Error("Ошибка обновления");
+    }
+
+    return await resp.json();
+  } catch (error) {
+    return error.message;
+  }
+};
