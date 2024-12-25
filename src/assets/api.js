@@ -20,7 +20,6 @@ export const addItem = async (url, item) => {
       },
       body: JSON.stringify(item),
     });
-
     if (!resp.ok) {
       throw new Error("Ошибка добавления");
     }
@@ -30,3 +29,18 @@ export const addItem = async (url, item) => {
     return error.message;
   }
 };
+
+export const removeItem = async (url) => {
+	try{
+		const resp = await fetch(url, {
+			method: "DELETE",
+		})
+		if (!resp.ok) {
+			throw new Error("Ошибка удаления")
+		} 
+	}
+	catch (error) {
+		return error.message
+	}
+}
+

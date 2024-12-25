@@ -1,4 +1,6 @@
 import { getItems } from "./assets/api";
+import { removeItem } from "./assets/api";
+import { initTasks } from "./init";
 
 const ul = document.querySelector("#task-list");
 
@@ -43,5 +45,32 @@ export const renderTasks = (tasks) => {
 };
 
 export const clearTasks = () => {
-  ul.innerHTML = "";
-};
+  ul.innerHTML = '';
+}
+
+
+//----------Удаление----------
+
+
+//Создаём событие для всего ul
+ul.addEventListener('click', async function(event) {
+
+  //Проверяем, есть ли кнопка с классом delete-task
+  if (event.target.classList.contains('delete-task')) {
+
+    //Получаем id элемента, который потенциально удалим
+    const id = event.target.closest('.task-item').dataset.id
+
+    //Уточняем, точно ли мы хотим удалить заметку
+    let question = confirm("Do you realy want to delete this task?")
+    
+    if(question){
+      
+      //Удаляем из бд
+      await removeItem(`/api/tasks/${id}`)
+
+      // Удаляем из интерфейса
+      initTasks()
+    }
+  }
+});
