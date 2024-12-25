@@ -5,3 +5,4 @@ import "./src/display.js";
 import "./src/filter.js";
 import "./src/addTasks.js";
 import "./src/editTask.js"
+import "./src/ux.js";
