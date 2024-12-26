@@ -1,23 +1,18 @@
 import { renderTasks, clearTasks } from "./display.js";
+import {tasks} from "./init.js";
 
 const select = document.querySelector("#filter-assignee");
-let handlerFilter = () => {};
-export const filter = (tasks) => {
-  select.removeEventListener("change", handlerFilter);
-  handlerFilter = async (event) => {
-    clearTasks();
+const handlerFilter = async (event) => {
+  clearTasks();
 
-    const user_id = event.target.value;
+  const user_id = event.target.value;
 
-    if (!isNaN(user_id)) {
-      // Если число, значит айди; отрисовываем по нему
-      await renderTasksByUserId(user_id, tasks);
-    } else {
-      await renderTasks(tasks);
-    }
-  };
-
-  select.addEventListener("change", handlerFilter);
+  if (!isNaN(user_id)) {
+    // Если число, значит айди; отрисовываем по нему
+    await renderTasksByUserId(user_id, tasks);
+  } else {
+    await renderTasks(tasks);
+  }
 };
 
 const renderTasksByUserId = async (user_id, tasks) => {
@@ -28,3 +23,5 @@ const renderTasksByUserId = async (user_id, tasks) => {
   });
   await renderTasks(filteredTasks);
 };
+
+select.addEventListener("change", handlerFilter);

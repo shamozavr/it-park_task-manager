@@ -4,14 +4,13 @@ import { initTasks } from "./init";
 
 const ul = document.querySelector("#task-list");
 
-// eslint-disable-next-line no-unused-vars
 // Возвращает item - который может быть либо массивом юзеров, либо массивом задач
 export const getArrItem = async (url, callback) => {
   //Получаем по url наш массив данных
   const resp = await getItems(url);
 
   // Проверяем, является ли результат массивом
-  if (Array.isArray(resp) && resp.length > 0) {
+  if (Array.isArray(resp)) {
     callback(resp); // Передаем данные для рендеринга
   } else {
     alert("Ответ не является массивом:", resp); // Если ошибкдаа, выводим сообщение
