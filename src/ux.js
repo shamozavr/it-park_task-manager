@@ -7,16 +7,16 @@ const handlerModal = (item, state, name, action) => {
       event.preventDefault();
       setTimeout(()=> {
         modalHidden.style.cssText = "opacity:0; pointer-events: none";
-      }, 400);
+      }, 200);
     }
     if (event.target.matches(name) && action == "close") {
       setTimeout(()=> {
         modalHidden.style.cssText = "opacity:0; pointer-events: none";
-      }, 400);
+      }, 200);
     } else if (event.target.matches(name) && action == "open") {
       setTimeout(()=> {
         modalHidden.style.cssText = "opacity:1; pointer-events: auto;";
-      }, 400);
+      }, 200);
     }
   });
 };

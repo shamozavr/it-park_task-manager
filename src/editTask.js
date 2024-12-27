@@ -8,7 +8,6 @@ let id
 
 const handlerOpenModal = (event) => {
   if (event.target.closest(".edit-task")) {
-    console.log(tasks);
     id = event.target.closest('.task-item').dataset.id
     const thisTask= tasks.find(task=> task.id==id)
 
