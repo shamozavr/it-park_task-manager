@@ -1,15 +1,12 @@
 import { getArrItem, renderTasks, clearTasks } from "./display.js";
-import { filter } from "./filter.js";
-import { addTasks } from "./addTasks.js";
-import { getDateModal } from "./editTask.js";
+
+export let tasks=[]
 
 export const initTasks = () => {
-  getArrItem("/api/tasks", (tasks) => {
+  getArrItem("/api/tasks", (newTasks) => {
     clearTasks();
-    renderTasks(tasks);
-    filter(tasks);
-    addTasks(tasks);
-    getDateModal(tasks)
+    renderTasks(newTasks);
+    tasks=newTasks
   });
 };
 initTasks();

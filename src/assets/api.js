@@ -49,7 +49,7 @@ export const updateItem = async (url, patch) => {
     return error.message;
   }
 };
-=======
+
 export const removeItem = async (url) => {
 	try{
 		const resp = await fetch(url, {
