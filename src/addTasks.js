@@ -1,5 +1,5 @@
 import { addItem } from "./assets/api";
-import {tasks, initTasks } from "./init";
+import {tasks, initTasks } from "./assets/init.js";
 
 const taskForm = document.querySelector("#task-form");
 

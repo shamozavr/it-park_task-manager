@@ -1,5 +1,5 @@
 import { renderTasks, clearTasks } from "./display.js";
-import {tasks} from "./init.js";
+import {tasks} from "./assets/init.js";
 
 const select = document.querySelector("#filter-assignee");
 const handlerFilter = async (event) => {

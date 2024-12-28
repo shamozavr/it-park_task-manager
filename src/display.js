@@ -1,21 +1,9 @@
 import { getItems } from "./assets/api";
 import { removeItem } from "./assets/api";
-import { initTasks } from "./init";
+import { initTasks } from "./assets/init.js";
 
 const ul = document.querySelector("#task-list");
 
-// Возвращает item - который может быть либо массивом юзеров, либо массивом задач
-export const getArrItem = async (url, callback) => {
-  //Получаем по url наш массив данных
-  const resp = await getItems(url);
-
-  // Проверяем, является ли результат массивом
-  if (Array.isArray(resp)) {
-    callback(resp); // Передаем данные для рендеринга
-  } else {
-    alert("Ответ не является массивом:", resp); // Если ошибкдаа, выводим сообщение
-  }
-};
 //Отображение на дисплее. resp = tasks
 export const renderTasks = (tasks) => {
   if (Array.isArray(tasks) && tasks.length > 0) {
