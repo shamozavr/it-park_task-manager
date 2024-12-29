@@ -1,5 +1,5 @@
 import { updateItem } from "./assets/api.js";
-import { tasks, initTasks } from "./init.js";
+import { tasks, initTasks } from "./assets/init.js";
 
 const taskList = document.querySelector("#task-list");
 const editTaskForm = document.querySelector("#edit-task-form");
